@@ -174,7 +174,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1994847599503971726, guid: 0298988595424f14d81ea44c0dddec83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258710197}
   m_SourcePrefab: {fileID: 100100000, guid: 0298988595424f14d81ea44c0dddec83, type: 3}
 --- !u!1 &374911520
 GameObject:
@@ -2626,7 +2629,7 @@ MonoBehaviour:
   leaveForwardDistance: 6
   leaveForwardDuration: 2.5
   bear: {fileID: 1258710196}
-  bearOffset: {x: 0, y: 0, z: -2}
+  bearOffset: {x: 0, y: 0, z: -3}
   resetPosition: {x: 83.5, y: 41.5, z: 97.8}
   faceTargetWhileMoving: 1
   turnSpeed: 8
@@ -2637,6 +2640,8 @@ MonoBehaviour:
   attackStartDistance: 2
   attackSlowMultiplier: 0.2
   attackHoldTime: 1
+  host: 127.0.0.1
+  port: 9000
 --- !u!4 &614480520
 Transform:
   m_ObjectHideFlags: 0
@@ -2652,6 +2657,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &629709662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8465147974276833770, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
+  m_PrefabInstance: {fileID: 1752306023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &629709663 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8465147974276833765, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
+  m_PrefabInstance: {fileID: 1752306023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &629709664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629709662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42afb2c4fada410da1c69de1248844b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OSCSender
+  audioSourceTransform: {fileID: 629709663}
+  vrCamera: {fileID: 1341757162}
+  host: 127.0.0.1
+  port: 9000
 --- !u!1 &1020492026
 GameObject:
   m_ObjectHideFlags: 19
@@ -3012,11 +3043,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+--- !u!1 &1258710193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1994847599503971726, guid: 0298988595424f14d81ea44c0dddec83, type: 3}
+  m_PrefabInstance: {fileID: 158852153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1258710196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1994847599504263598, guid: 0298988595424f14d81ea44c0dddec83, type: 3}
   m_PrefabInstance: {fileID: 158852153}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1258710197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258710193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42afb2c4fada410da1c69de1248844b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OSCSender
+  audioSourceTransform: {fileID: 1258710196}
+  vrCamera: {fileID: 1341757162}
+  host: 127.0.0.1
+  port: 9000
 --- !u!1 &1307724691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,6 +3118,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1753546887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1341757162 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7917674758326848207, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1235408090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1346621500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
@@ -3284,8 +3341,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5374833090116323751, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1510128137}
   m_SourcePrefab: {fileID: 100100000, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
+--- !u!1 &1510128134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5374833090116323751, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
+  m_PrefabInstance: {fileID: 1472006794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1510128135 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5374833090125855289, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
@@ -3296,6 +3361,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5374833090116031879, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
   m_PrefabInstance: {fileID: 1472006794}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1510128137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510128134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42afb2c4fada410da1c69de1248844b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OSCSender
+  audioSourceTransform: {fileID: 1510128136}
+  vrCamera: {fileID: 1341757162}
+  host: 127.0.0.1
+  port: 9000
 --- !u!1 &1541061544
 GameObject:
   m_ObjectHideFlags: 1
@@ -3461,7 +3542,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8465147974276833770, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 629709664}
   m_SourcePrefab: {fileID: 100100000, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
 --- !u!1 &1753546886
 GameObject:
