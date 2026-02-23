@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2f755624192b8204e96291e7bcfb26f4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Model/Materials/PBR Frog_Inside_Intestine.mat
+  uploadId: 403779

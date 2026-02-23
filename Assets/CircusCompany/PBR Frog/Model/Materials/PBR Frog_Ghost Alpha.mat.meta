@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 485c9e8f665a4b746a0832165cf4bf71
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Model/Materials/PBR Frog_Ghost Alpha.mat
+  uploadId: 403779

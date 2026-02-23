@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abaad985cf229214e8ce59deb88c4421
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Model/Animations/PBR Frog_Anim_Die.anim
+  uploadId: 403779

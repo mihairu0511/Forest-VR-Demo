@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c163006ef05c7954e93f796f54f50edb
+timeCreated: 1599033714
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Shader/CC_Ghost Shader.shader
+  uploadId: 403779

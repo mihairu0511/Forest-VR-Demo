@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 92a1ca4d53b885d45b803ae9597a2d71
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Model/Animations/PBR Frog_Anim_Idle.anim
+  uploadId: 403779

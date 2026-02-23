@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 951faac8f5b0c734bbb25156dcf1679d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 184152
+  packageName: PBR Frog Animated
+  packageVersion: 1.0
+  assetPath: Assets/CircusCompany/PBR Frog/Model/Animations/PBR Frog_Anim_Swim.anim
+  uploadId: 403779
