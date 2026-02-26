@@ -59,7 +59,6 @@ public class Events : MonoBehaviour
     [Header("OSC Settings")]
     public string host = "127.0.0.1";
     public int port = 9000;
-    private OscClient client;
 
     Coroutine _routine;
     bool _inScriptedMove;
@@ -89,7 +88,6 @@ public class Events : MonoBehaviour
             {
                 _angleDeg = Mathf.Atan2(to.z, to.x) * Mathf.Rad2Deg;
             }
-            client.Send("/fly/trigger", 1);
         }
 
         if (anim != null)
@@ -98,8 +96,6 @@ public class Events : MonoBehaviour
             anim.SetBool(isDiving, false);
             anim.SetBool(isAttacking, false);
         }
-
-        client = new OscClient(host, port);
 
         Debug.Log($"Events running on {gameObject.name}. Eagle={(eagle != null ? eagle.name : "(self)")}, Animator={(anim != null ? anim.name : "none")}");
     }
@@ -131,7 +127,6 @@ public class Events : MonoBehaviour
         {
             Debug.Log("Trigger pressed: " + spawnBearKey);
             SpawnBear();
-            client.Send("/bear/trigger", 1);
         }
     }
 
@@ -212,8 +207,6 @@ public class Events : MonoBehaviour
             anim.SetBool(isFlyingParam, true);
         }
 
-        client.Send("/dive/trigger", 1);
-
         Vector3 approachDir = (center - EagleT.position);
         approachDir.y = 0f;
         if (approachDir.sqrMagnitude < 0.0001f)
@@ -237,8 +230,6 @@ public class Events : MonoBehaviour
         float rad = _angleDeg * Mathf.Deg2Rad;
         Vector3 returnPoint = center + new Vector3(Mathf.Cos(rad) * circleRadius, 0f, Mathf.Sin(rad) * circleRadius);
         returnPoint.y = circleY;
-
-        client.Send("/fly/trigger", 1);
 
         yield return MoveToPosition(returnPoint, returnDuration, easeInOut: true);
 
