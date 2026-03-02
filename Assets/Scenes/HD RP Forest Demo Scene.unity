@@ -2614,7 +2614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events
   diveKey: 19
-  resetKey: 34
   spawnBearKey: 39
   eagle: {fileID: 1510128136}
   eagleAnim: {fileID: 1510128135}
@@ -2641,8 +2640,8 @@ MonoBehaviour:
   attackStartDistance: 2
   attackSlowMultiplier: 0.2
   attackHoldTime: 1
-  host: 127.0.0.1
-  port: 9000
+  oscDive: /event/eagle/dive
+  oscRoar: /event/bear/roar
 --- !u!4 &614480520
 Transform:
   m_ObjectHideFlags: 0
@@ -3133,8 +3132,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8806329115733545877, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1346621501}
   m_SourcePrefab: {fileID: 100100000, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+--- !u!1 &1235408091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8806329115733545877, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1235408090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1258710193 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1994847599503971726, guid: 0298988595424f14d81ea44c0dddec83, type: 3}
@@ -3223,6 +3230,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
   m_PrefabInstance: {fileID: 1235408090}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1346621501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235408091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8325ae586a5e44bff8c72f5955b610a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PositionPublisher
+  audioSourceTransform1: {fileID: 1510128136}
+  audioSourceTransform2: {fileID: 1258710196}
+  audioSourceTransform3: {fileID: 629709663}
+  audioSourceTransform4: {fileID: 629709663}
+  vrCamera: {fileID: 1341757162}
 --- !u!1 &1388337783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,57 +3511,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
---- !u!1 &1482221608
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1482221610}
-  - component: {fileID: 1482221609}
-  m_Layer: 0
-  m_Name: OSCManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1482221609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482221608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42afb2c4fada410da1c69de1248844b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OSCSender
-  audioSourceTransform1: {fileID: 1510128136}
-  audioSourceTransform2: {fileID: 1258710196}
-  audioSourceTransform3: {fileID: 629709663}
-  audioSourceTransform4: {fileID: 1402995964}
-  vrCamera: {fileID: 1341757162}
-  host: 127.0.0.1
-  port: 9000
---- !u!4 &1482221610
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482221608}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.03998, y: 32.31807, z: 102.06256}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1510128135 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5374833090125855289, guid: ad3baaa2ca403794db86e1b8329f5b55, type: 3}
@@ -3651,6 +3624,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7917674758326848202, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
   m_PrefabInstance: {fileID: 1235408090}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1738339716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738339718}
+  - component: {fileID: 1738339717}
+  m_Layer: 0
+  m_Name: OSCHub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1738339717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738339716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6124788cc7224fdd8f24a5bad4a9cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OSCHub
+  host: 127.0.0.1
+  port: 9000
+--- !u!4 &1738339718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738339716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75.04575, y: 31.65562, z: 102.06564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1752306023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4025,4 +4044,4 @@ SceneRoots:
   - {fileID: 158852153}
   - {fileID: 1752306023}
   - {fileID: 1402995964}
-  - {fileID: 1482221610}
+  - {fileID: 1738339718}

@@ -1,14 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using OscJack;
-
 
 public class Events : MonoBehaviour
 {
     [Header("Trigger")]
     public Key diveKey = Key.E;
-    public Key resetKey = Key.T;
     public Key spawnBearKey = Key.Y;
 
     [Header("Eagle (Controlled Target)")]
@@ -56,9 +53,9 @@ public class Events : MonoBehaviour
 
     public float attackHoldTime = 0.35f;
 
-    [Header("OSC Settings")]
-    public string host = "127.0.0.1";
-    public int port = 9000;
+    [Header("OSC Addresses")]
+    public string oscDive = "/event/eagle/dive";
+    public string oscRoar = "/event/bear/roar";
 
     Coroutine _routine;
     bool _inScriptedMove;
@@ -97,6 +94,7 @@ public class Events : MonoBehaviour
             anim.SetBool(isAttacking, false);
         }
 
+        OSCHub.Instance?.SendInt(oscDive, 0);
         Debug.Log($"Events running on {gameObject.name}. Eagle={(eagle != null ? eagle.name : "(self)")}, Animator={(anim != null ? anim.name : "none")}");
     }
 
@@ -116,16 +114,10 @@ public class Events : MonoBehaviour
             _routine = StartCoroutine(DiveInFrontThenReturn());
         }
 
-        if (Keyboard.current[resetKey].wasPressedThisFrame)
-        {
-            Debug.Log("Trigger pressed: " + resetKey);
-            if (_routine != null) StopCoroutine(_routine);
-            ResetEagle();
-        }
-
         if (Keyboard.current[spawnBearKey].wasPressedThisFrame)
         {
             Debug.Log("Trigger pressed: " + spawnBearKey);
+            OSCHub.Instance?.SendInt(oscRoar, 1);
             SpawnBear();
         }
     }
@@ -177,6 +169,7 @@ public class Events : MonoBehaviour
 
     IEnumerator DiveInFrontThenReturn()
     {
+        OSCHub.Instance?.SendInt(oscDive, 1);
         _inScriptedMove = true;
 
         if (anim != null)
@@ -231,6 +224,7 @@ public class Events : MonoBehaviour
         Vector3 returnPoint = center + new Vector3(Mathf.Cos(rad) * circleRadius, 0f, Mathf.Sin(rad) * circleRadius);
         returnPoint.y = circleY;
 
+        OSCHub.Instance?.SendInt(oscDive, 0);
         yield return MoveToPosition(returnPoint, returnDuration, easeInOut: true);
 
         _inScriptedMove = false;
@@ -304,31 +298,6 @@ public class Events : MonoBehaviour
         if (!(driveAttackNearXROrigin && xrOrigin != null && anim != null && Vector3.Distance(EagleT.position, xrOrigin.position) <= attackStartDistance))
         {
             EagleT.position = target;
-        }
-    }
-
-    void ResetEagle()
-    {
-        EagleT.position = resetPosition;
-
-        if (xrOrigin != null)
-        {
-            Vector3 center = xrOrigin.position;
-            Vector3 to = EagleT.position - center;
-            to.y = 0f;
-            if (to.sqrMagnitude > 0.0001f)
-            {
-                _angleDeg = Mathf.Atan2(to.z, to.x) * Mathf.Rad2Deg;
-            }
-        }
-
-        _inScriptedMove = false;
-
-        if (anim != null)
-        {
-            anim.SetBool(isFlyingParam, true);
-            anim.SetBool(isDiving, false);
-            anim.SetBool(isAttacking, false);
         }
     }
 
