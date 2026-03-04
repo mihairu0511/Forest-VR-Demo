@@ -32,8 +32,10 @@ public class Events : MonoBehaviour
 
     public float leaveForwardDuration = 2.5f;
 
+    [Header("Bear")]
     public Transform bear;
     public Vector3 bearOffset = new Vector3(0f, 0f, -2f);
+    public float runDuration = 3.0f;
 
     [Header("Reset")]
     public Vector3 resetPosition = new Vector3(83.5f, 41.5f, 97.8f);
@@ -46,6 +48,8 @@ public class Events : MonoBehaviour
     [SerializeField] private string isFlyingParam = "isFlying";
     [SerializeField] private string isDiving = "isDiving";
     [SerializeField] private string isAttacking = "isAttacking";
+    [SerializeField] private string isRunning = "isRunning";
+    [SerializeField] private string isResting = "isResting";
 
     public float attackStartDistance = 2.0f;
 
@@ -313,29 +317,55 @@ public class Events : MonoBehaviour
         EagleT.rotation = Quaternion.Slerp(EagleT.rotation, targetRot, 1f - Mathf.Exp(-turnSpeed * Time.deltaTime));
     }
 
-    void SpawnBear()
-    {
-        if (bear == null || xrOrigin == null)
+    void SpawnBear() {
+    
+        if (bear == null)
         {
-            Debug.LogWarning("Bear reference or XR origin not assigned.");
+            Debug.LogWarning("Bear reference not assigned.");
             return;
         }
 
-        Vector3 spawnPos = xrOrigin.position + xrOrigin.TransformDirection(bearOffset);
-        bear.position = spawnPos;
-
-        Vector3 lookDir = xrOrigin.position - bear.position;
-        lookDir.y = 0f;
-        if (lookDir.sqrMagnitude > 0.0001f)
-        {
-            bear.rotation = Quaternion.LookRotation(lookDir.normalized, Vector3.up);
-        }
-
         Animator bearAnim = bear.GetComponentInChildren<Animator>();
+        Vector3 spawnPos = new Vector3(76f, 31f, 100f);
+
+        IEnumerator RunToSpawn()
+        {
+            Vector3 start = bear.position;
+
+            float t = 0f;
+            float duration = Mathf.Max(0.0001f, runDuration);
+
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                float u = Mathf.Clamp01(t / duration);
+
+                bear.position = Vector3.Lerp(start, spawnPos, u);
+
+                Vector3 dir = spawnPos - bear.position;
+                dir.y = 0f;
+                if (dir.sqrMagnitude > 0.0001f)
+                {
+                    Quaternion targetRot = Quaternion.LookRotation(dir.normalized, Vector3.up);
+                    bear.rotation = Quaternion.Slerp(bear.rotation, targetRot, 1f - Mathf.Exp(-turnSpeed * Time.deltaTime));
+                }
+
+                yield return null;
+            }
+
+            bear.position = spawnPos;
+            bearAnim.SetBool(isResting, true);
+            bearAnim.SetBool(isRunning, false);
+            bearAnim.SetTrigger("roar");
+            OSCHub.Instance?.SendInt(oscRoar, 2);
+        }
         if (bearAnim != null && bearAnim.HasParameterOfType("roar", AnimatorControllerParameterType.Trigger))
         {
-            bearAnim.SetTrigger("roar");
+            bearAnim.SetBool(isResting, false);
+            bearAnim.SetBool(isRunning, true);
         }
+        OSCHub.Instance?.SendInt(oscRoar, 1);
+        StartCoroutine(RunToSpawn());
     }
 }
 
