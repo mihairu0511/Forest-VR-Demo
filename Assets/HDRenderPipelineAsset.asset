@@ -47,15 +47,15 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     supportDistortion: 1
-    supportTransparentBackface: 1
-    supportTransparentDepthPrepass: 1
-    supportTransparentDepthPostpass: 1
+    supportTransparentBackface: 0
+    supportTransparentDepthPrepass: 0
+    supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
     depthBufferFormat: 0
-    supportCustomPass: 1
+    supportCustomPass: 0
     supportVariableRateShading: 1
     customBufferFormat: 8
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 1
     planarReflectionResolution:
       m_Values: 000100000004000000080000
       m_SchemaId:
@@ -70,8 +70,8 @@ MonoBehaviour:
     decalNormalBufferHP: 0
     supportHighQualityLineRendering: 0
     highQualityLineRenderingMemoryBudget: 128
-    msaaSampleCount: 1
-    supportMotionVectors: 1
+    msaaSampleCount: 4
+    supportMotionVectors: 0
     supportScreenSpaceLensFlare: 1
     supportDataDrivenLensFlare: 1
     supportDitheringCrossFade: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
       checkerboardDepthBuffer: 1
       upsampleType: 1
     xrSettings:
-      singlePass: 1
+      singlePass: 0
       occlusionMesh: 1
       cameraJitter: 0
       allowMotionBlur: 0
