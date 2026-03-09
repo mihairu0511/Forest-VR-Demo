@@ -58,8 +58,8 @@ public class Events : MonoBehaviour
     public float attackHoldTime = 0.35f;
 
     [Header("OSC Addresses")]
-    public string oscDive = "/event/eagle";
-    public string oscRoar = "/event/bear";
+    public string oscEagle = "/event/eagle";
+    public string oscBear = "/event/bear";
 
     Coroutine _routine;
     bool _inScriptedMove;
@@ -98,8 +98,8 @@ public class Events : MonoBehaviour
             anim.SetBool(isAttacking, false);
         }
 
-        OSCHub.Instance?.SendInt(oscDive, 1);
-        OSCHub.Instance?.SendInt(oscRoar, 0);
+        OSCHub.Instance?.SendInt(oscEagle, 1);
+        OSCHub.Instance?.SendInt(oscBear, 0);
         Debug.Log($"Events running on {gameObject.name}. Eagle={(eagle != null ? eagle.name : "(self)")}, Animator={(anim != null ? anim.name : "none")}");
     }
 
@@ -173,7 +173,7 @@ public class Events : MonoBehaviour
 
     IEnumerator DiveInFrontThenReturn()
     {
-        OSCHub.Instance?.SendInt(oscDive, 2);
+        OSCHub.Instance?.SendInt(oscEagle, 2);
         _inScriptedMove = true;
 
         if (anim != null)
@@ -228,7 +228,7 @@ public class Events : MonoBehaviour
         Vector3 returnPoint = center + new Vector3(Mathf.Cos(rad) * circleRadius, 0f, Mathf.Sin(rad) * circleRadius);
         returnPoint.y = circleY;
 
-        OSCHub.Instance?.SendInt(oscDive, 1);
+        OSCHub.Instance?.SendInt(oscEagle, 1);
         yield return MoveToPosition(returnPoint, returnDuration, easeInOut: true);
 
         _inScriptedMove = false;
@@ -357,14 +357,14 @@ public class Events : MonoBehaviour
             bearAnim.SetBool(isResting, true);
             bearAnim.SetBool(isRunning, false);
             bearAnim.SetTrigger("roar");
-            OSCHub.Instance?.SendInt(oscRoar, 2);
+            OSCHub.Instance?.SendInt(oscBear, 2);
         }
         if (bearAnim != null && bearAnim.HasParameterOfType("roar", AnimatorControllerParameterType.Trigger))
         {
             bearAnim.SetBool(isResting, false);
             bearAnim.SetBool(isRunning, true);
         }
-        OSCHub.Instance?.SendInt(oscRoar, 1);
+        OSCHub.Instance?.SendInt(oscBear, 1);
         StartCoroutine(RunToSpawn());
     }
 }

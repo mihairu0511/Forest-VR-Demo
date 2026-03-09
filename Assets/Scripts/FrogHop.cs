@@ -20,6 +20,9 @@ public class FrogHop : MonoBehaviour
 
     private bool isHopping = false;
 
+    [Header("OSC Settings")]
+    public string oscFrog = "/event/frog";
+
     void Start()
     {
         if (xrOrigin == null)
@@ -27,7 +30,7 @@ public class FrogHop : MonoBehaviour
             Debug.LogError("FrogHop: XR Origin is not assigned.");
             return;
         }
-
+        OSCHub.Instance?.SendInt(oscFrog, 0);
         StartCoroutine(HopRoutine());
     }
 
@@ -45,7 +48,6 @@ public class FrogHop : MonoBehaviour
 
                 if (distToXR > stopDistance)
                 {
-                    // Hop toward XR Origin
                     Vector3 dir = (xrOrigin.position - transform.position);
                     dir.y = 0f;
                     dir.Normalize();
@@ -106,5 +108,6 @@ public class FrogHop : MonoBehaviour
 
         transform.position = targetPos;
         isHopping = false;
+        OSCHub.Instance?.SendInt(oscFrog, 1);
     }
 }
