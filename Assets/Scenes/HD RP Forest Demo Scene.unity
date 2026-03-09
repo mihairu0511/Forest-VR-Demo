@@ -109623,7 +109623,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8465147974276833770, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2143495031}
   m_SourcePrefab: {fileID: 100100000, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
 --- !u!1 &1753392013
 GameObject:
@@ -131033,6 +131036,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139005779}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2143495030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8465147974276833770, guid: 7ebccfb41e7724243ad1d0f7bd0362da, type: 3}
+  m_PrefabInstance: {fileID: 1752306023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2143495031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143495030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f62a00b8f4b4462f8486ed6f7febea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrogHop
+  xrOrigin: {fileID: 1346621500}
+  stopDistance: 2
+  hopDistance: 1.2
+  hopHeight: 1
+  hopDuration: 0.4
+  waitBetweenHops: 2
+  aroundRadius: 2.5
+  randomOffset: 1.2
 --- !u!1 &2143975821
 GameObject:
   m_ObjectHideFlags: 0
