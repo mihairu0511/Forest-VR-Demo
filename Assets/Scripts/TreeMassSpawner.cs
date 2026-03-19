@@ -9,6 +9,7 @@ public class TreeMassSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     public int numberOfTrees = 50;
     public float spawnRadius = 20f;
+    public float noSpawnRadiusAroundXR = 4f; // trees will not spawn inside this radius
     public Vector2 randomScaleRange = new Vector2(0.8f, 1.2f);
     public bool spawnOnStart = true;
 
@@ -47,16 +48,25 @@ public class TreeMassSpawner : MonoBehaviour
 
         int spawnedCount = 0;
         int attempts = 0;
-        int maxAttempts = numberOfTrees * 20;
+        int maxAttempts = numberOfTrees * 30;
 
         while (spawnedCount < numberOfTrees && attempts < maxAttempts)
         {
             attempts++;
 
             Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
-            Vector3 spawnPos = xrOrigin.position + new Vector3(randomCircle.x, 0f, randomCircle.y);
+            Vector3 candidatePos = xrOrigin.position + new Vector3(randomCircle.x, 0f, randomCircle.y);
 
-            Vector3 rayOrigin = new Vector3(spawnPos.x, xrOrigin.position.y + raycastHeight, spawnPos.z);
+            // Reject points too close to XR origin (XZ plane only)
+            Vector2 xrFlat = new Vector2(xrOrigin.position.x, xrOrigin.position.z);
+            Vector2 candidateFlat = new Vector2(candidatePos.x, candidatePos.z);
+
+            if (Vector2.Distance(xrFlat, candidateFlat) < noSpawnRadiusAroundXR)
+            {
+                continue;
+            }
+
+            Vector3 rayOrigin = new Vector3(candidatePos.x, xrOrigin.position.y + raycastHeight, candidatePos.z);
 
             if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, raycastHeight * 2f, groundLayer))
             {

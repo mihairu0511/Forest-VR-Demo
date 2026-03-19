@@ -108,7 +108,6 @@ public class FrogHop : MonoBehaviour
 
         transform.position = targetPos;
         isHopping = false;
-        OSCHub.Instance?.SendInt(oscFrog, 1);
-        OSCHub.Instance?.SendInt(oscFrog, 0);        
+        OSCHub.Instance?.SendInt(oscFrog, 1);     
     }
 }
