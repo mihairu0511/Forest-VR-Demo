@@ -307,7 +307,7 @@ public class Events : MonoBehaviour
 
         if (fairyLookAlongMovement)
         {
-            Vector3 moveDir = fairy.position - fairyPreviousPosition;
+            Vector3 moveDir = fairy.position - xrOrigin.position;
             if (moveDir.sqrMagnitude > 0.0001f)
             {
                 Quaternion targetRot = Quaternion.LookRotation(moveDir.normalized, Vector3.up);
