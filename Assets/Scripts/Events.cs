@@ -146,7 +146,7 @@ public class Events : MonoBehaviour
     IEnumerator RunWholeSequence()
     {
         ResetActorsToStart();
-        yield return RunFairySequence();
+        // yield return RunFairySequence();
         anim.SetBool(isTakingOff, true);
         OSCHub.Instance?.SendInt(oscEagle, 1);
         yield return RunEagleSequence();
